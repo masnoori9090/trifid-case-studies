@@ -6,6 +6,10 @@ A responsive case-study portfolio for Trifid Media split into three dedicated co
 - `websites.html` — 13 selected website case studies
 - `ai-ads.html` — AI-generated ad creative across 5 industries
 
+## Live site
+
+[trifid-case-studies.vercel.app](https://trifid-case-studies.vercel.app)
+
 ## Preview locally
 
 ```bash
