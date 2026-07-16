@@ -1,6 +1,48 @@
 const header = document.querySelector("[data-header]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const currentPage = window.location.pathname.split("/").pop() || "index.html";
+const mobileCollections = [
+  {
+    href: "index.html",
+    label: "Ads",
+    title: "Ad case studies",
+    icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg>',
+  },
+  {
+    href: "websites.html",
+    label: "Websites",
+    title: "Website case studies",
+    icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>',
+  },
+  {
+    href: "ai-ads.html",
+    label: "AI Ads",
+    title: "AI ad creative",
+    icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.4 4.1L17.5 8.5l-4.1 1.4L12 14l-1.4-4.1-4.1-1.4 4.1-1.4L12 3Z"/><path d="m18.5 14 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></svg>',
+  },
+];
+
+const activeCollection = mobileCollections.find((item) => item.href === currentPage) || mobileCollections[0];
+
+if (header) {
+  const mobileTitle = document.createElement("span");
+  mobileTitle.className = "mobile-header-title";
+  mobileTitle.textContent = activeCollection.title;
+  header.appendChild(mobileTitle);
+}
+
+const mobileDock = document.createElement("nav");
+mobileDock.className = "mobile-dock";
+mobileDock.setAttribute("aria-label", "Case study collections");
+mobileDock.innerHTML = mobileCollections
+  .map((item) => {
+    const active = item.href === activeCollection.href;
+    return `<a href="${item.href}"${active ? ' class="active" aria-current="page"' : ""}>${item.icon}<span>${item.label}</span></a>`;
+  })
+  .join("");
+document.body.appendChild(mobileDock);
+
 const setHeaderState = () => {
   header?.classList.toggle("is-scrolled", window.scrollY > 24);
 };
