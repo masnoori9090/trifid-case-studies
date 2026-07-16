@@ -567,6 +567,177 @@ img {
   line-height: 1.35;
 }
 
+.creative-edge-section {
+  padding: clamp(6rem, 10vw, 10rem) var(--page-pad);
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.creative-edge__intro,
+.creative-edge__compare,
+.creative-edge__statement {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+.creative-edge__intro {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  align-items: end;
+  gap: 7vw;
+}
+
+.creative-edge__intro h2 {
+  margin: .85rem 0 0;
+  font-size: clamp(3.7rem, 7.5vw, 8.5rem);
+  line-height: .8;
+  letter-spacing: -.075em;
+}
+
+.creative-edge__intro h2 em {
+  color: var(--acid);
+  font-weight: 500;
+}
+
+.creative-edge__context p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.creative-edge__context a,
+.creative-edge__statement a {
+  width: fit-content;
+  min-height: 3rem;
+  margin-top: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid currentColor;
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.creative-edge__compare {
+  margin-top: clamp(3rem, 6vw, 6rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+}
+
+.creative-edge-card {
+  min-height: 39rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--ink);
+  border-radius: 1.4rem;
+}
+
+.creative-edge-card--problem {
+  background: var(--white);
+}
+
+.creative-edge-card--answer {
+  background: var(--wine);
+  color: var(--white);
+  border-color: var(--wine);
+  box-shadow: 0 1.5rem 4rem rgba(7, 20, 47, .17);
+}
+
+.creative-edge-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: .6rem;
+  letter-spacing: .07em;
+}
+
+.creative-edge-card__head strong {
+  padding: .55rem .7rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: .55rem;
+  font-weight: 500;
+}
+
+.creative-edge-card--answer .creative-edge-card__head strong {
+  border-color: var(--acid-2);
+  background: var(--acid);
+}
+
+.creative-edge-card ol {
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.creative-edge-card li {
+  padding: 1.55rem 0;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 1rem;
+  border-top: 1px solid currentColor;
+}
+
+.creative-edge-card li > span {
+  color: var(--acid);
+  font-family: var(--font-mono);
+  font-size: .6rem;
+}
+
+.creative-edge-card li strong {
+  display: block;
+  font-size: clamp(1.45rem, 2.2vw, 2.25rem);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+.creative-edge-card li p {
+  max-width: 34rem;
+  margin: .7rem 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.creative-edge-card--answer li p {
+  color: rgba(255, 255, 255, .62);
+}
+
+.creative-edge__statement {
+  margin-top: .75rem;
+  padding: clamp(1.75rem, 4vw, 4rem);
+  display: grid;
+  grid-template-columns: .38fr 1fr auto;
+  align-items: center;
+  gap: 3rem;
+  border-radius: 1.4rem;
+  background: var(--acid);
+  color: var(--white);
+}
+
+.creative-edge__statement > span {
+  font-family: var(--font-mono);
+  font-size: .6rem;
+  letter-spacing: .08em;
+}
+
+.creative-edge__statement > strong {
+  max-width: 47rem;
+  font-size: clamp(1.75rem, 3vw, 3.3rem);
+  line-height: .98;
+  letter-spacing: -.05em;
+}
+
+.creative-edge__statement a {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
 .program-section {
   padding: clamp(6rem, 10vw, 10rem) var(--page-pad);
   background: var(--ink);
@@ -2487,6 +2658,13 @@ img {
   .program-grid { grid-template-columns: 1fr; }
   .program-card { min-height: 25rem; }
   .deck-jump { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .creative-edge__intro,
+  .creative-edge__statement { grid-template-columns: 1fr; }
+  .creative-edge__context { max-width: 42rem; }
+  .creative-edge__compare { grid-template-columns: 1fr; }
+  .creative-edge-card { min-height: auto; }
+  .creative-edge-card ol { margin-top: 5rem; }
+  .creative-edge__statement { gap: 1.5rem; }
 }
 
 @media (max-width: 700px) {
@@ -2544,6 +2722,17 @@ img {
   .proof-strip > div:first-child { padding-left: var(--page-pad); padding-right: var(--page-pad); }
   .proof-metric { display: grid !important; grid-template-columns: 1fr 1fr; align-items: center; }
   .proof-metric span { margin-top: 0; }
+  .creative-edge-section { padding-top: 4.75rem; padding-bottom: 4.75rem; }
+  .creative-edge__intro h2 { font-size: clamp(3.35rem, 16vw, 4.5rem); line-height: .86; }
+  .creative-edge__compare { gap: .65rem; }
+  .creative-edge-card { padding: 1.35rem; border-radius: 1.1rem; }
+  .creative-edge-card ol { margin-top: 3.5rem; }
+  .creative-edge-card li { padding: 1.25rem 0; grid-template-columns: 1.6rem 1fr; gap: .7rem; }
+  .creative-edge-card li strong { font-size: 1.55rem; }
+  .creative-edge-card li p { font-size: .92rem; }
+  .creative-edge__statement { padding: 1.5rem; border-radius: 1.1rem; }
+  .creative-edge__statement > strong { font-size: 2rem; }
+  .creative-edge__statement a { width: 100%; justify-content: space-between; }
   .section { padding-top: 4.75rem; padding-bottom: 4.75rem; }
   .section-heading { margin-bottom: 3rem; }
   .section-heading h2,
@@ -2652,6 +2841,7 @@ img {
 
   main > .hero,
   main > .section,
+  main > .creative-edge-section,
   main > .approach-section,
   main > .ai-hero,
   main > .ai-promise,
