@@ -2645,6 +2645,11 @@ img {
     box-shadow: 0 .8rem 2.5rem rgba(7, 20, 47, .07);
   }
 
+  main > .ai-promise {
+    max-width: none;
+    margin: .6rem;
+  }
+
   main > .hero,
   main > .section,
   main > .approach-section,
