@@ -199,11 +199,139 @@ img {
   transform: translate(0.2rem, -0.2rem);
 }
 
+.language-switcher {
+  justify-self: end;
+  min-height: 2.65rem;
+  padding: .35rem .45rem .35rem .75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 253, 250, .7);
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 220ms ease, background 220ms ease, border-color 220ms ease, transform 220ms var(--ease);
+}
+
+.language-switcher:hover,
+.language-switcher:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+
+.language-switcher:active {
+  transform: scale(.96);
+}
+
+.language-switcher span {
+  min-width: 1.8rem;
+  min-height: 1.8rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--acid);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  letter-spacing: .04em;
+}
+
+.language-switcher b {
+  font-family: "Noto Kufi Arabic", var(--font-display);
+  font-size: .66rem;
+  font-weight: 600;
+}
+
 .menu-button,
 .mobile-menu,
 .mobile-dock,
 .mobile-header-title {
   display: none;
+}
+
+html[lang="ar"] {
+  --font-display: "Noto Kufi Arabic", Arial, sans-serif;
+  --font-mono: "Noto Kufi Arabic", ui-monospace, monospace;
+}
+
+html[lang="ar"] body {
+  font-family: var(--font-display);
+}
+
+html[lang="ar"] em {
+  font-style: normal;
+}
+
+html[lang="ar"] .hero h1,
+html[lang="ar"] .ai-hero h1,
+html[lang="ar"] .creative-edge__intro h2,
+html[lang="ar"] .program-heading h2,
+html[lang="ar"] .full-deck-heading h2,
+html[lang="ar"] .section-heading h2,
+html[lang="ar"] .approach-title h2,
+html[lang="ar"] .contact-copy h2,
+html[lang="ar"] .ai-promise h2,
+html[lang="ar"] .ai-work-intro h2,
+html[lang="ar"] .ai-closing h2,
+html[lang="ar"] .ai-industry__head h2 {
+  line-height: 1.1;
+  letter-spacing: -.055em;
+}
+
+html[lang="ar"] .program-card h3,
+html[lang="ar"] .program-system__intro h3,
+html[lang="ar"] .operations-copy h3,
+html[lang="ar"] .ad-case h3,
+html[lang="ar"] .case-library__head h3,
+html[lang="ar"] .documented-case h4,
+html[lang="ar"] .site-copy h3,
+html[lang="ar"] .approach-card h3,
+html[lang="ar"] .creative-edge-card li strong {
+  line-height: 1.28;
+  letter-spacing: -.035em;
+}
+
+html[dir="rtl"] .brand,
+html[dir="rtl"] .proof-metric strong,
+html[dir="rtl"] .ad-main-number,
+html[dir="rtl"] .roas-number,
+html[dir="rtl"] .spend-shift strong,
+html[dir="rtl"] .lead-lift strong,
+html[dir="rtl"] .commerce-equation strong,
+html[dir="rtl"] .documented-case > strong,
+html[dir="rtl"] .case-head span:last-child,
+html[dir="rtl"] .site-copy .case-number,
+html[dir="rtl"] .contact-email {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+html[dir="rtl"] .desktop-nav a small {
+  margin-right: .25rem;
+  margin-left: 0;
+}
+
+html[dir="rtl"] .desktop-nav a::after {
+  right: 0;
+  left: auto;
+}
+
+html[dir="rtl"] .language-switcher {
+  padding-right: .45rem;
+  padding-left: .75rem;
+}
+
+html[dir="rtl"] .test-loop > i,
+html[dir="rtl"] .approach-join i {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .case-live-link span,
+html[dir="rtl"] .text-link span,
+html[dir="rtl"] .creative-edge__statement a span {
+  transform: scaleX(-1);
 }
 
 .hero {
@@ -2630,7 +2758,7 @@ img {
 }
 
 @media (max-width: 1000px) {
-  .site-header { grid-template-columns: 1fr; }
+  .site-header { grid-template-columns: 1fr auto; }
   .desktop-nav,
   .header-cta { display: none; }
   .hero { grid-template-columns: 1fr; padding-top: 9rem; }
@@ -2673,7 +2801,7 @@ img {
   .site-header {
     height: 4.5rem;
     padding: 0 .75rem;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: auto minmax(0, 1fr) auto;
     gap: .55rem;
     background: rgba(241, 239, 232, .94);
     border-color: var(--line);
@@ -2704,6 +2832,17 @@ img {
   }
   .desktop-nav a small,
   .desktop-nav a::after { display: none; }
+  .language-switcher {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: .25rem;
+    justify-content: center;
+  }
+  .language-switcher span {
+    min-width: 2rem;
+    min-height: 2rem;
+  }
+  .language-switcher b { display: none; }
   .hero { min-height: auto; padding-top: 6.75rem; gap: 3rem; }
   .hero-grid { background-size: 25vw 25vw; }
   .hero h1 { font-size: clamp(3.65rem, 18vw, 5.4rem); line-height: .88; }
@@ -2808,7 +2947,7 @@ img {
   }
 
   .mobile-header-title {
-    justify-self: end;
+    justify-self: center;
     min-height: 2.25rem;
     padding: 0 .85rem;
     display: inline-flex;

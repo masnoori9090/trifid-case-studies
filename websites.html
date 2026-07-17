@@ -12,14 +12,26 @@
     />
     <title>Website Case Studies — Trifid Media</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <script>document.documentElement.classList.add("js");</script>
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
+        const savedLanguage = window.localStorage.getItem("trifid-language");
+        if (requestedLanguage === "ar" || (!requestedLanguage && savedLanguage === "ar")) {
+          document.documentElement.lang = "ar";
+          document.documentElement.dir = "rtl";
+          document.documentElement.classList.add("lang-ar");
+        }
+      } catch {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&amp;family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&amp;family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&amp;family=Noto+Kufi+Arabic:wght@400;500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="i18n.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body class="website-page">
