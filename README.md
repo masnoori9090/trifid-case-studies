@@ -1,10 +1,12 @@
 # Trifid Media — Selected Work
 
-A responsive case-study portfolio for Trifid Media split into three dedicated collections:
+A responsive, bilingual (English / Arabic) case-study portfolio for Trifid Media split into three dedicated collections:
 
 - `index.html` — 12 documented advertising case studies
 - `websites.html` — 13 selected website case studies
 - `ai-ads.html` — AI-generated ad creative across 5 industries
+
+Each page has a fully translated right-to-left Arabic counterpart (`index-ar.html`, `websites-ar.html`, `ai-ads-ar.html`), linked from the language switcher in the header.
 
 ## Live site
 
