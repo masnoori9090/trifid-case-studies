@@ -3142,6 +3142,13 @@ img {
 }
 
 /* Language switch */
+.lang-switch-group {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .lang-switch {
   justify-self: end;
   display: inline-flex;
@@ -3173,12 +3180,22 @@ img {
 
   .mobile-header-title {
     justify-self: end;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    line-height: 2.25rem;
   }
 
   .lang-switch {
     min-height: 2.25rem;
-    padding: 0 0.8rem;
-    font-size: 0.66rem;
+    padding: 0 0.7rem;
+    font-size: 0.64rem;
+  }
+
+  .lang-switch-group {
+    gap: 0.3rem;
   }
 }
 
@@ -3269,4 +3286,39 @@ html[lang="ar"] .deck-page figcaption strong {
     padding: 1.25rem;
     border: 1px solid var(--line);
   }
+}
+
+/* Hindi / Devanagari */
+html[lang="hi"] {
+  --font-display: "IBM Plex Sans Devanagari", "Inter Tight", "Segoe UI", Arial, sans-serif;
+  --font-mono: "DM Mono", "IBM Plex Sans Devanagari", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Tight tracking collides Devanagari matras; keep the script at its natural spacing. */
+html[lang="hi"] * {
+  letter-spacing: 0 !important;
+}
+
+html[lang="hi"] .brand > span:last-child {
+  letter-spacing: 0.09em !important;
+}
+
+/* Slanted Devanagari is synthetic; color and weight already carry the emphasis. */
+html[lang="hi"] em {
+  font-style: normal;
+}
+
+/* Devanagari carries marks above the headline and below the baseline — tight display leading clips them. */
+html[lang="hi"] h1,
+html[lang="hi"] h2,
+html[lang="hi"] h3,
+html[lang="hi"] .hero--minimal h1,
+html[lang="hi"] .hero h1,
+html[lang="hi"] .full-deck-heading h2,
+html[lang="hi"] .creative-edge__intro h2 {
+  line-height: 1.3;
+}
+
+html[lang="hi"] .hero--minimal h1 em {
+  margin-top: 0;
 }

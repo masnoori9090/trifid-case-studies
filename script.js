@@ -1,38 +1,48 @@
 const header = document.querySelector("[data-header]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const isArabic = document.documentElement.lang === "ar";
-const i18n = isArabic
-  ? {
-      dockLabel: "مجموعات دراسات الحالة",
-      play: "تشغيل الفيديو",
-      pause: "إيقاف مؤقت",
-    }
-  : {
-      dockLabel: "Case study collections",
-      play: "Play video",
-      pause: "Pause",
-    };
+const locales = {
+  en: {
+    dockLabel: "Case study collections",
+    play: "Play video",
+    pause: "Pause",
+    collections: [
+      { href: "index.html", label: "Ads", title: "Ad case studies" },
+      { href: "websites.html", label: "Websites", title: "Website case studies" },
+      { href: "ai-ads.html", label: "AI Ads", title: "AI ad creative" },
+    ],
+  },
+  ar: {
+    dockLabel: "مجموعات دراسات الحالة",
+    play: "تشغيل الفيديو",
+    pause: "إيقاف مؤقت",
+    collections: [
+      { href: "index-ar.html", label: "الإعلانات", title: "دراسات حالة الإعلانات" },
+      { href: "websites-ar.html", label: "المواقع", title: "دراسات حالة المواقع" },
+      { href: "ai-ads-ar.html", label: "إعلانات AI", title: "إعلانات الذكاء الاصطناعي" },
+    ],
+  },
+  hi: {
+    dockLabel: "केस स्टडी संग्रह",
+    play: "वीडियो चलाएँ",
+    pause: "रोकें",
+    collections: [
+      { href: "index-hi.html", label: "विज्ञापन", title: "विज्ञापन केस स्टडीज़" },
+      { href: "websites-hi.html", label: "वेबसाइट्स", title: "वेबसाइट केस स्टडीज़" },
+      { href: "ai-ads-hi.html", label: "AI विज्ञापन", title: "AI विज्ञापन क्रिएटिव" },
+    ],
+  },
+};
 
-const currentPage = window.location.pathname.split("/").pop() || (isArabic ? "index-ar.html" : "index.html");
+const i18n = locales[document.documentElement.lang] || locales.en;
+
+const currentPage = window.location.pathname.split("/").pop() || i18n.collections[0].href;
 const collectionIcons = [
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg>',
   '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>',
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.4 4.1L17.5 8.5l-4.1 1.4L12 14l-1.4-4.1-4.1-1.4 4.1-1.4L12 3Z"/><path d="m18.5 14 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></svg>',
 ];
-const mobileCollections = (
-  isArabic
-    ? [
-        { href: "index-ar.html", label: "الإعلانات", title: "دراسات حالة الإعلانات" },
-        { href: "websites-ar.html", label: "المواقع", title: "دراسات حالة المواقع" },
-        { href: "ai-ads-ar.html", label: "إعلانات AI", title: "إعلانات الذكاء الاصطناعي" },
-      ]
-    : [
-        { href: "index.html", label: "Ads", title: "Ad case studies" },
-        { href: "websites.html", label: "Websites", title: "Website case studies" },
-        { href: "ai-ads.html", label: "AI Ads", title: "AI ad creative" },
-      ]
-).map((item, index) => ({ ...item, icon: collectionIcons[index] }));
+const mobileCollections = i18n.collections.map((item, index) => ({ ...item, icon: collectionIcons[index] }));
 
 const activeCollection = mobileCollections.find((item) => item.href === currentPage) || mobileCollections[0];
 
@@ -40,7 +50,7 @@ if (header) {
   const mobileTitle = document.createElement("span");
   mobileTitle.className = "mobile-header-title";
   mobileTitle.textContent = activeCollection.title;
-  const langSwitch = header.querySelector(".lang-switch");
+  const langSwitch = header.querySelector(":scope > .lang-switch-group, :scope > .lang-switch");
   if (langSwitch) {
     header.insertBefore(mobileTitle, langSwitch);
   } else {
