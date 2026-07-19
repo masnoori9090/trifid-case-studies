@@ -11,27 +11,18 @@
       content="Thirteen custom website case studies from Trifid Media, spanning luxury, real estate, mobility, wellness, travel, aerospace, personal brands, and B2B services."
     />
     <title>Website Case Studies — Trifid Media</title>
+    <link rel="alternate" hreflang="en" href="https://trifid-case-studies.vercel.app/websites.html" />
+    <link rel="alternate" hreflang="ar" href="https://trifid-case-studies.vercel.app/websites-ar.html" />
+    <link rel="alternate" hreflang="hi" href="https://trifid-case-studies.vercel.app/websites-hi.html" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <script>
-      document.documentElement.classList.add("js");
-      try {
-        const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
-        const savedLanguage = window.localStorage.getItem("trifid-language");
-        if (requestedLanguage === "ar" || (!requestedLanguage && savedLanguage === "ar")) {
-          document.documentElement.lang = "ar";
-          document.documentElement.dir = "rtl";
-          document.documentElement.classList.add("lang-ar");
-        }
-      } catch {}
-    </script>
+    <script>document.documentElement.classList.add("js");</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&amp;family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&amp;family=Noto+Kufi+Arabic:wght@400;500;600;700;800&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&amp;family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <script src="i18n.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body class="website-page">
@@ -49,6 +40,11 @@
         <a href="ai-ads.html">AI Ads <small>05</small></a>
       </nav>
 
+      <div class="lang-switch-group" role="group" aria-label="Language">
+        <a class="lang-switch active" href="websites.html" lang="en" hreflang="en" aria-current="true">English</a>
+        <a class="lang-switch" href="websites-ar.html" lang="ar" hreflang="ar" aria-label="عرض الموقع باللغة العربية">العربية</a>
+        <a class="lang-switch" href="websites-hi.html" lang="hi" hreflang="hi" aria-label="यह साइट हिन्दी में देखें">हिन्दी</a>
+      </div>
     </header>
 
     <main id="main">
@@ -390,7 +386,6 @@
           <a class="button button-accent" href="mailto:9090mohammad123@gmail.com?subject=New%20website%20brief&body=Hi%20Mohammad%2C%0A%0AHere%27s%20the%20website%20I%20need%3A%0A%0AThe%20main%20goal%20is%3A%0A%0AMy%20target%20customer%20is%3A%0A">
             Send the brief <span>↗</span>
           </a>
-          <a class="contact-email" href="mailto:9090mohammad123@gmail.com">9090mohammad123@gmail.com</a>
         </div>
       </section>
     </main>

@@ -1,72 +1,70 @@
 const header = document.querySelector("[data-header]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const i18n = window.TrifidI18n;
-const locale = i18n?.locale || "en";
-const t = (value) => i18n?.t(value) || value;
-const localizedHref = (href) => (locale === "ar" ? `${href}?lang=ar` : href);
 
-const currentPage = window.location.pathname.split("/").pop() || "index.html";
-const mobileCollections = [
-  {
-    href: "index.html",
-    label: "Ads",
-    arLabel: "الإعلانات",
-    title: "Ad case studies",
-    arTitle: "دراسات الإعلانات",
-    icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg>',
+const locales = {
+  en: {
+    dockLabel: "Case study collections",
+    play: "Play video",
+    pause: "Pause",
+    collections: [
+      { href: "index.html", label: "Ads", title: "Ad case studies" },
+      { href: "websites.html", label: "Websites", title: "Website case studies" },
+      { href: "ai-ads.html", label: "AI Ads", title: "AI ad creative" },
+    ],
   },
-  {
-    href: "websites.html",
-    label: "Websites",
-    arLabel: "المواقع",
-    title: "Website case studies",
-    arTitle: "دراسات المواقع",
-    icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>',
+  ar: {
+    dockLabel: "مجموعات دراسات الحالة",
+    play: "تشغيل الفيديو",
+    pause: "إيقاف مؤقت",
+    collections: [
+      { href: "index-ar.html", label: "الإعلانات", title: "دراسات حالة الإعلانات" },
+      { href: "websites-ar.html", label: "المواقع", title: "دراسات حالة المواقع" },
+      { href: "ai-ads-ar.html", label: "إعلانات AI", title: "إعلانات الذكاء الاصطناعي" },
+    ],
   },
-  {
-    href: "ai-ads.html",
-    label: "AI Ads",
-    arLabel: "إعلانات AI",
-    title: "AI ad creative",
-    arTitle: "إعلانات AI",
-    icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.4 4.1L17.5 8.5l-4.1 1.4L12 14l-1.4-4.1-4.1-1.4 4.1-1.4L12 3Z"/><path d="m18.5 14 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></svg>',
+  hi: {
+    dockLabel: "केस स्टडी संग्रह",
+    play: "वीडियो चलाएँ",
+    pause: "रोकें",
+    collections: [
+      { href: "index-hi.html", label: "विज्ञापन", title: "विज्ञापन केस स्टडीज़" },
+      { href: "websites-hi.html", label: "वेबसाइट्स", title: "वेबसाइट केस स्टडीज़" },
+      { href: "ai-ads-hi.html", label: "AI विज्ञापन", title: "AI विज्ञापन क्रिएटिव" },
+    ],
   },
+};
+
+const i18n = locales[document.documentElement.lang] || locales.en;
+
+const currentPage = window.location.pathname.split("/").pop() || i18n.collections[0].href;
+const collectionIcons = [
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg>',
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>',
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.4 4.1L17.5 8.5l-4.1 1.4L12 14l-1.4-4.1-4.1-1.4 4.1-1.4L12 3Z"/><path d="m18.5 14 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></svg>',
 ];
+const mobileCollections = i18n.collections.map((item, index) => ({ ...item, icon: collectionIcons[index] }));
 
 const activeCollection = mobileCollections.find((item) => item.href === currentPage) || mobileCollections[0];
 
 if (header) {
   const mobileTitle = document.createElement("span");
   mobileTitle.className = "mobile-header-title";
-  mobileTitle.textContent = locale === "ar" ? activeCollection.arTitle : activeCollection.title;
-  header.appendChild(mobileTitle);
-
-  const languageSwitcher = document.createElement("button");
-  languageSwitcher.type = "button";
-  languageSwitcher.className = "language-switcher";
-  languageSwitcher.dataset.noI18n = "";
-  languageSwitcher.setAttribute(
-    "aria-label",
-    locale === "ar" ? "التبديل إلى الإنجليزية" : "Switch to Arabic",
-  );
-  languageSwitcher.innerHTML =
-    locale === "ar"
-      ? '<span>EN</span><b>English</b>'
-      : '<span>AR</span><b>العربية</b>';
-  languageSwitcher.addEventListener("click", () => {
-    i18n?.setLocale(locale === "ar" ? "en" : "ar");
-  });
-  header.appendChild(languageSwitcher);
+  mobileTitle.textContent = activeCollection.title;
+  const langSwitch = header.querySelector(":scope > .lang-switch-group, :scope > .lang-switch");
+  if (langSwitch) {
+    header.insertBefore(mobileTitle, langSwitch);
+  } else {
+    header.appendChild(mobileTitle);
+  }
 }
 
 const mobileDock = document.createElement("nav");
 mobileDock.className = "mobile-dock";
-mobileDock.setAttribute("aria-label", t("Case study collections"));
+mobileDock.setAttribute("aria-label", i18n.dockLabel);
 mobileDock.innerHTML = mobileCollections
   .map((item) => {
     const active = item.href === activeCollection.href;
-    const label = locale === "ar" ? item.arLabel : item.label;
-    return `<a href="${localizedHref(item.href)}"${active ? ' class="active" aria-current="page"' : ""}>${item.icon}<span>${label}</span></a>`;
+    return `<a href="${item.href}"${active ? ' class="active" aria-current="page"' : ""}>${item.icon}<span>${item.label}</span></a>`;
   })
   .join("");
 document.body.appendChild(mobileDock);
@@ -141,8 +139,8 @@ document.querySelectorAll("[data-video-toggle]").forEach((button) => {
   const setButtonState = (playing) => {
     card?.classList.toggle("is-playing", playing);
     if (icon) icon.textContent = playing ? "Ⅱ" : "▶";
-    if (label) label.textContent = playing ? t("Pause") : t("Play video");
-    button.setAttribute("aria-label", playing ? t("Pause video") : t("Play video"));
+    if (label) label.textContent = playing ? i18n.pause : i18n.play;
+    button.setAttribute("aria-label", playing ? i18n.pause : i18n.play);
   };
 
   button.addEventListener("click", async () => {
