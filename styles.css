@@ -3373,11 +3373,6 @@ html[lang="hi"] .hero--minimal h1 em {
   background: #0b1020;
 }
 
-.ai-media-grid--reels {
-  max-width: 76rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .creatives-more {
   align-items: center;
 }
@@ -3389,13 +3384,14 @@ html[lang="hi"] .hero--minimal h1 em {
   white-space: nowrap;
 }
 
-@media (max-width: 1000px) {
+/* Reels grid: auto-fit so a section of 3 or 4 videos both center cleanly.
+   Scoped to tablet/desktop; mobile keeps the shared horizontal scroller. */
+@media (min-width: 701px) {
   .ai-media-grid--reels {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .ai-media-grid--reels .ai-media-card:nth-child(3),
-  .ai-media-grid--reels .ai-media-card:nth-child(4) {
-    margin-top: 0;
+    max-width: 76rem;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 16.5rem));
+    justify-content: center;
+    align-items: start;
   }
 }
 
