@@ -10,6 +10,7 @@ const locales = {
       { href: "index.html", label: "Ads", title: "Ad case studies" },
       { href: "websites.html", label: "Websites", title: "Website case studies" },
       { href: "ai-ads.html", label: "AI Ads", title: "AI ad creative" },
+      { href: "creatives.html", label: "Creatives", title: "Ad creatives" },
     ],
   },
   ar: {
@@ -20,6 +21,7 @@ const locales = {
       { href: "index-ar.html", label: "الإعلانات", title: "دراسات حالة الإعلانات" },
       { href: "websites-ar.html", label: "المواقع", title: "دراسات حالة المواقع" },
       { href: "ai-ads-ar.html", label: "إعلانات AI", title: "إعلانات الذكاء الاصطناعي" },
+      { href: "creatives-ar.html", label: "الإبداعات", title: "الإعلانات الإبداعية" },
     ],
   },
   hi: {
@@ -30,6 +32,7 @@ const locales = {
       { href: "index-hi.html", label: "विज्ञापन", title: "विज्ञापन केस स्टडीज़" },
       { href: "websites-hi.html", label: "वेबसाइट्स", title: "वेबसाइट केस स्टडीज़" },
       { href: "ai-ads-hi.html", label: "AI विज्ञापन", title: "AI विज्ञापन क्रिएटिव" },
+      { href: "creatives-hi.html", label: "क्रिएटिव", title: "विज्ञापन क्रिएटिव" },
     ],
   },
 };
@@ -41,6 +44,7 @@ const collectionIcons = [
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg>',
   '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>',
   '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.4 4.1L17.5 8.5l-4.1 1.4L12 14l-1.4-4.1-4.1-1.4 4.1-1.4L12 3Z"/><path d="m18.5 14 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"/></svg>',
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg>',
 ];
 const mobileCollections = i18n.collections.map((item, index) => ({ ...item, icon: collectionIcons[index] }));
 
