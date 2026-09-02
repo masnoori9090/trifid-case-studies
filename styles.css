@@ -1349,6 +1349,78 @@ img {
   text-align: right;
 }
 
+.deck-case-bio {
+  margin-top: .75rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid rgba(17, 17, 15, .55);
+  background: rgba(255, 253, 250, .58);
+  box-shadow: 0 .8rem 2rem rgba(17, 17, 15, .06);
+}
+
+.deck-case-bio__item {
+  min-width: 0;
+  min-height: 6.8rem;
+  padding: .85rem clamp(.75rem, 1.3vw, 1.15rem) 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: .28rem;
+  border-inline-end: 1px solid rgba(17, 17, 15, .22);
+}
+
+.deck-case-bio__item:last-child {
+  border-inline-end: 0;
+}
+
+.deck-case-bio__item span {
+  margin-bottom: auto;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: .55rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.deck-case-bio__item strong {
+  font-size: clamp(1.05rem, 1.55vw, 1.45rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+  letter-spacing: -.035em;
+  line-height: 1;
+}
+
+.deck-case-bio__item small {
+  color: var(--muted);
+  font-size: .67rem;
+  line-height: 1.25;
+}
+
+.deck-case-bio__item--after {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.deck-case-bio__item--after span {
+  color: var(--acid-2);
+}
+
+.deck-case-bio__item--after small,
+.deck-case-bio__item--spend small {
+  color: rgba(255, 253, 250, .7);
+}
+
+.deck-case-bio__item--spend {
+  background: var(--acid);
+  color: white;
+}
+
+.deck-case-bio__item--spend span {
+  color: rgba(255, 255, 255, .72);
+}
+
 .spend-shift {
   margin-top: auto;
   display: grid;
@@ -2763,6 +2835,14 @@ img {
   .deck-group__head h3 { grid-column: 1 / -1; grid-row: 2; }
   .deck-gallery { grid-template-columns: 1fr; }
   .deck-page--wide { grid-column: auto; }
+  .deck-case-bio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .deck-case-bio__item { min-height: 6.25rem; }
+  .deck-case-bio__item--after { border-inline-end: 0; }
+  .deck-case-bio__item--spend {
+    grid-column: 1 / -1;
+    min-height: 5.5rem;
+    border-top: 1px solid rgba(255, 255, 255, .34);
+  }
   .site-cases { grid-template-columns: 1fr; gap: 4rem; }
   .site-case--wide { grid-column: auto; }
   .browser-frame--portrait .site-preview,
